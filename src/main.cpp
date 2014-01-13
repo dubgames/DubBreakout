@@ -113,12 +113,7 @@ int main(int argc, char* argv[]) {
    
     std::vector<struct sprite*> blocks = getBlocks();
     
-//    Uint32 fps_start = SDL_GetTicks();
     Uint32 start_time = SDL_GetTicks(), time_diff = SDL_GetTicks(), time_taken;
-//    Uint32 ;
-//    Uint32 frames_rendered = 0;
-//    float fps = 0.;
-
     
     while (!isQuitPressed) {
         time_diff = SDL_GetTicks() - start_time;
@@ -171,13 +166,6 @@ int main(int argc, char* argv[]) {
         SDL_RenderSetScale(renderer, screen_scale, screen_scale);
         SDL_RenderPresent(renderer);
         
-        // Count frames per second
-//        frames_rendered++;
-//        if (frames_rendered % FRAMES_PER_SECOND == 0) {
-//            fps = 1000. * frames_rendered / (float)(SDL_GetTicks() - fps_start);
-//            fps_start = SDL_GetTicks();
-//            frames_rendered = 0;
-//        }
         
         // Cap frame rate
         time_taken = SDL_GetTicks() - start_time;
