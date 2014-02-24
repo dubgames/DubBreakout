@@ -27,16 +27,16 @@ int main(int argc, char* argv[]) {
                 
         Game_update(&blocks, &ball, paddles, timeDifferenceMillis);
         
-		System_render(&topbar, &ball, &blocks, paddles);
+	System_render(&topbar, &ball, &blocks, paddles);
         
-		System_endFrame();
+	System_endFrame();
     }
     
     for (int i = 0; i < 4; i++) {
         free(paddles[i]);
     }
     for (int i = 0; i < blocks.size(); ++i) {
-		free(blocks[i]);
+	free(blocks[i]);
     }
     
     System_quit();
