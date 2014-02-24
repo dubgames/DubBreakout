@@ -1,17 +1,13 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "SDL2/SDL.h"
+#include "IncludeSDL.h"
 
-struct sprite {
+typedef struct sprite {
     float x, y, velocityX, velocityY, width, height;
-    SDL_Rect rect;
-    struct texture *texture;
-    bool isVisible;
+	bool isVisible;
+    SDL_Rect rect;        
     SDL_Color color;
-};
-
-SDL_Rect* getRect(struct sprite *s);
-void renderSprite(SDL_Renderer *renderer, struct sprite sprite);
+} sprite;
 
 #endif

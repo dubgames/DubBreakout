@@ -5,11 +5,11 @@
 #include "Input.h"
 #include "Paddle.h"
 #include "Ball.h"
-#include "main.h"
+#include "Sound.h"
 
-extern int score, lives, level, targetScore;
-extern bool isScoreNeedingUpdate, isGameOver;
+extern int Game_score, Game_lives, Game_level, Game_targetScore;
+extern bool Game_scoreUpdated, Game_isOver;
 
-void updateGameState(std::vector<struct sprite*> *blocks, struct sprite *ball, struct sprite *paddle, Uint32 time_diff);
+void Game_update(std::vector<sprite*> *blocks, sprite *ball, sprite *paddles[], Uint32 timeDifferenceMillis);
     
 #endif

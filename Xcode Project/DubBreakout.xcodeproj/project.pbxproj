@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B717EA301883765D00E23BCE /* Dub_Block_Breaker.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B717EA2F1883765D00E23BCE /* Dub_Block_Breaker.1 */; };
-		B717EA5B188377BB00E23BCE /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B717EA4D188377BB00E23BCE /* Ball.cpp */; };
-		B717EA5C188377BB00E23BCE /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B717EA50188377BB00E23BCE /* Game.cpp */; };
-		B717EA5D188377BB00E23BCE /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B717EA52188377BB00E23BCE /* Input.cpp */; };
-		B717EA5E188377BB00E23BCE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B717EA54188377BB00E23BCE /* main.cpp */; };
-		B717EA60188377BB00E23BCE /* Paddle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B717EA57188377BB00E23BCE /* Paddle.cpp */; };
-		B717EA61188377BB00E23BCE /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B717EA59188377BB00E23BCE /* Sprite.cpp */; };
+		B7148E1A18BAC0190039901E /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7148E0818BAC0190039901E /* Ball.cpp */; };
+		B7148E1B18BAC0190039901E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7148E0B18BAC0190039901E /* Game.cpp */; };
+		B7148E1C18BAC0190039901E /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7148E0E18BAC0190039901E /* Input.cpp */; };
+		B7148E1D18BAC0190039901E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7148E1018BAC0190039901E /* main.cpp */; };
+		B7148E1E18BAC0190039901E /* Paddle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7148E1118BAC0190039901E /* Paddle.cpp */; };
+		B7148E1F18BAC0190039901E /* ScoreBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7148E1318BAC0190039901E /* ScoreBar.cpp */; };
+		B7148E2018BAC0190039901E /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7148E1518BAC0190039901E /* Sound.cpp */; };
+		B7148E2118BAC0190039901E /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7148E1818BAC0190039901E /* System.cpp */; };
 		B717EA66188377EE00E23BCE /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B717EA62188377EE00E23BCE /* SDL2_image.framework */; };
 		B717EA67188377EE00E23BCE /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B717EA63188377EE00E23BCE /* SDL2_mixer.framework */; };
 		B717EA68188377EE00E23BCE /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B717EA64188377EE00E23BCE /* SDL2_ttf.framework */; };
@@ -35,32 +36,36 @@
 				B717EA6B1883787B00E23BCE /* beep.ogg in CopyFiles */,
 				B717EA6C1883787B00E23BCE /* paddle.ogg in CopyFiles */,
 				B717EA6D1883787B00E23BCE /* thump.wav in CopyFiles */,
-				B717EA301883765D00E23BCE /* Dub_Block_Breaker.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B717EA2A1883765D00E23BCE /* Dub Block Breaker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Dub Block Breaker"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B717EA2F1883765D00E23BCE /* Dub_Block_Breaker.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Dub_Block_Breaker.1; sourceTree = "<group>"; };
+		B7148E0818BAC0190039901E /* Ball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
+		B7148E0918BAC0190039901E /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
+		B7148E0A18BAC0190039901E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		B7148E0B18BAC0190039901E /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		B7148E0C18BAC0190039901E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		B7148E0D18BAC0190039901E /* IncludeSDL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncludeSDL.h; sourceTree = "<group>"; };
+		B7148E0E18BAC0190039901E /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
+		B7148E0F18BAC0190039901E /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
+		B7148E1018BAC0190039901E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B7148E1118BAC0190039901E /* Paddle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Paddle.cpp; sourceTree = "<group>"; };
+		B7148E1218BAC0190039901E /* Paddle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paddle.h; sourceTree = "<group>"; };
+		B7148E1318BAC0190039901E /* ScoreBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreBar.cpp; sourceTree = "<group>"; };
+		B7148E1418BAC0190039901E /* ScoreBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBar.h; sourceTree = "<group>"; };
+		B7148E1518BAC0190039901E /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		B7148E1618BAC0190039901E /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		B7148E1718BAC0190039901E /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		B7148E1818BAC0190039901E /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = System.cpp; sourceTree = "<group>"; };
+		B7148E1918BAC0190039901E /* System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = System.h; sourceTree = "<group>"; };
+		B7148E2218BAC0B00039901E /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Config.h; path = ../Config.h; sourceTree = "<group>"; };
+		B717EA2A1883765D00E23BCE /* DubBreakout */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DubBreakout; sourceTree = BUILT_PRODUCTS_DIR; };
 		B717EA371883778600E23BCE /* ATARCE__.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ATARCE__.TTF; sourceTree = "<group>"; };
 		B717EA391883778600E23BCE /* beep.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep.ogg; sourceTree = "<group>"; };
 		B717EA3B1883778600E23BCE /* paddle.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = paddle.ogg; sourceTree = "<group>"; };
 		B717EA3C1883778600E23BCE /* thump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = thump.wav; sourceTree = "<group>"; };
-		B717EA4D188377BB00E23BCE /* Ball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
-		B717EA4E188377BB00E23BCE /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
-		B717EA4F188377BB00E23BCE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		B717EA50188377BB00E23BCE /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
-		B717EA51188377BB00E23BCE /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		B717EA52188377BB00E23BCE /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
-		B717EA53188377BB00E23BCE /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
-		B717EA54188377BB00E23BCE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B717EA55188377BB00E23BCE /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
-		B717EA57188377BB00E23BCE /* Paddle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Paddle.cpp; sourceTree = "<group>"; };
-		B717EA58188377BB00E23BCE /* Paddle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paddle.h; sourceTree = "<group>"; };
-		B717EA59188377BB00E23BCE /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
-		B717EA5A188377BB00E23BCE /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		B717EA62188377EE00E23BCE /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		B717EA63188377EE00E23BCE /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		B717EA64188377EE00E23BCE /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -90,7 +95,6 @@
 				B717EA63188377EE00E23BCE /* SDL2_mixer.framework */,
 				B717EA64188377EE00E23BCE /* SDL2_ttf.framework */,
 				B717EA65188377EE00E23BCE /* SDL2.framework */,
-				B717EA2C1883765D00E23BCE /* Dub Block Breaker */,
 				B717EA2B1883765D00E23BCE /* Products */,
 				B717EA6E188379F100E23BCE /* Readme.md */,
 				B717EA4C188377BB00E23BCE /* src */,
@@ -101,17 +105,9 @@
 		B717EA2B1883765D00E23BCE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B717EA2A1883765D00E23BCE /* Dub Block Breaker */,
+				B717EA2A1883765D00E23BCE /* DubBreakout */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B717EA2C1883765D00E23BCE /* Dub Block Breaker */ = {
-			isa = PBXGroup;
-			children = (
-				B717EA2F1883765D00E23BCE /* Dub_Block_Breaker.1 */,
-			);
-			path = "Dub Block Breaker";
 			sourceTree = "<group>";
 		};
 		B717EA361883778600E23BCE /* assets */ = {
@@ -129,19 +125,25 @@
 		B717EA4C188377BB00E23BCE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				B717EA4D188377BB00E23BCE /* Ball.cpp */,
-				B717EA4E188377BB00E23BCE /* Ball.h */,
-				B717EA4F188377BB00E23BCE /* Constants.h */,
-				B717EA50188377BB00E23BCE /* Game.cpp */,
-				B717EA51188377BB00E23BCE /* Game.h */,
-				B717EA52188377BB00E23BCE /* Input.cpp */,
-				B717EA53188377BB00E23BCE /* Input.h */,
-				B717EA54188377BB00E23BCE /* main.cpp */,
-				B717EA55188377BB00E23BCE /* main.h */,
-				B717EA57188377BB00E23BCE /* Paddle.cpp */,
-				B717EA58188377BB00E23BCE /* Paddle.h */,
-				B717EA59188377BB00E23BCE /* Sprite.cpp */,
-				B717EA5A188377BB00E23BCE /* Sprite.h */,
+				B7148E2218BAC0B00039901E /* Config.h */,
+				B7148E0818BAC0190039901E /* Ball.cpp */,
+				B7148E0918BAC0190039901E /* Ball.h */,
+				B7148E0A18BAC0190039901E /* Constants.h */,
+				B7148E0B18BAC0190039901E /* Game.cpp */,
+				B7148E0C18BAC0190039901E /* Game.h */,
+				B7148E0D18BAC0190039901E /* IncludeSDL.h */,
+				B7148E0E18BAC0190039901E /* Input.cpp */,
+				B7148E0F18BAC0190039901E /* Input.h */,
+				B7148E1018BAC0190039901E /* main.cpp */,
+				B7148E1118BAC0190039901E /* Paddle.cpp */,
+				B7148E1218BAC0190039901E /* Paddle.h */,
+				B7148E1318BAC0190039901E /* ScoreBar.cpp */,
+				B7148E1418BAC0190039901E /* ScoreBar.h */,
+				B7148E1518BAC0190039901E /* Sound.cpp */,
+				B7148E1618BAC0190039901E /* Sound.h */,
+				B7148E1718BAC0190039901E /* Sprite.h */,
+				B7148E1818BAC0190039901E /* System.cpp */,
+				B7148E1918BAC0190039901E /* System.h */,
 			);
 			name = src;
 			path = ../src;
@@ -150,9 +152,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B717EA291883765D00E23BCE /* Dub Block Breaker */ = {
+		B717EA291883765D00E23BCE /* DubBreakout */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B717EA331883765D00E23BCE /* Build configuration list for PBXNativeTarget "Dub Block Breaker" */;
+			buildConfigurationList = B717EA331883765D00E23BCE /* Build configuration list for PBXNativeTarget "DubBreakout" */;
 			buildPhases = (
 				B717EA261883765D00E23BCE /* Sources */,
 				B717EA271883765D00E23BCE /* Frameworks */,
@@ -162,9 +164,9 @@
 			);
 			dependencies = (
 			);
-			name = "Dub Block Breaker";
+			name = DubBreakout;
 			productName = "Dub Block Breaker";
-			productReference = B717EA2A1883765D00E23BCE /* Dub Block Breaker */;
+			productReference = B717EA2A1883765D00E23BCE /* DubBreakout */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -176,7 +178,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Dub Games";
 			};
-			buildConfigurationList = B717EA251883765D00E23BCE /* Build configuration list for PBXProject "Dub Block Breaker" */;
+			buildConfigurationList = B717EA251883765D00E23BCE /* Build configuration list for PBXProject "DubBreakout" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -188,7 +190,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B717EA291883765D00E23BCE /* Dub Block Breaker */,
+				B717EA291883765D00E23BCE /* DubBreakout */,
 			);
 		};
 /* End PBXProject section */
@@ -198,12 +200,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B717EA5D188377BB00E23BCE /* Input.cpp in Sources */,
-				B717EA60188377BB00E23BCE /* Paddle.cpp in Sources */,
-				B717EA5B188377BB00E23BCE /* Ball.cpp in Sources */,
-				B717EA5E188377BB00E23BCE /* main.cpp in Sources */,
-				B717EA5C188377BB00E23BCE /* Game.cpp in Sources */,
-				B717EA61188377BB00E23BCE /* Sprite.cpp in Sources */,
+				B7148E2118BAC0190039901E /* System.cpp in Sources */,
+				B7148E1C18BAC0190039901E /* Input.cpp in Sources */,
+				B7148E1A18BAC0190039901E /* Ball.cpp in Sources */,
+				B7148E1F18BAC0190039901E /* ScoreBar.cpp in Sources */,
+				B7148E1D18BAC0190039901E /* main.cpp in Sources */,
+				B7148E2018BAC0190039901E /* Sound.cpp in Sources */,
+				B7148E1B18BAC0190039901E /* Game.cpp in Sources */,
+				B7148E1E18BAC0190039901E /* Paddle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +289,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DubBreakout;
 			};
 			name = Debug;
 		};
@@ -296,14 +300,14 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DubBreakout;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B717EA251883765D00E23BCE /* Build configuration list for PBXProject "Dub Block Breaker" */ = {
+		B717EA251883765D00E23BCE /* Build configuration list for PBXProject "DubBreakout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B717EA311883765D00E23BCE /* Debug */,
@@ -312,7 +316,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B717EA331883765D00E23BCE /* Build configuration list for PBXNativeTarget "Dub Block Breaker" */ = {
+		B717EA331883765D00E23BCE /* Build configuration list for PBXNativeTarget "DubBreakout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B717EA341883765D00E23BCE /* Debug */,

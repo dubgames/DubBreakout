@@ -1,7 +1,6 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include "SDL2/SDL.h"
 #include "Sprite.h"
 #include <vector>
 
@@ -37,8 +36,8 @@ const SDL_Color RED = { 0xC8, 0x48, 0x48 };
 const SDL_Color GRAY = { 0x8E, 0x8E, 0x8E };
 
 
-inline struct sprite getTopBar() {
-    struct sprite topbar;
+inline sprite Constants_getTopBar() {
+    sprite topbar;
     topbar.x = 0;
     topbar.y = SCORES_HEIGHT;
     topbar.width = SCREEN_WIDTH;
@@ -48,19 +47,21 @@ inline struct sprite getTopBar() {
     return topbar;
 }
 
-inline struct sprite getPaddle() {
-    struct sprite paddle;
-    paddle.width = PADDLE_WIDTH;
-    paddle.height = PADDLE_HEIGHT;
-    paddle.x = SCREEN_WIDTH / 2;
-    paddle.y = SCREEN_HEIGHT - PADDLE_HEIGHT - BOTTOM_PADDING;
-    paddle.color = RED;
-    paddle.isVisible = true;
+inline sprite* Constants_getPaddle(SDL_Color color) {
+    sprite *paddle = (sprite*)malloc(sizeof(sprite));
+    paddle->width = PADDLE_WIDTH;
+    paddle->height = PADDLE_HEIGHT;
+    paddle->x = SCREEN_WIDTH / 2;
+    paddle->y = SCREEN_HEIGHT - PADDLE_HEIGHT - BOTTOM_PADDING;
+    paddle->color = color;
+    paddle->isVisible = true;
+    paddle->velocityX = 0;
+    paddle->velocityY = 0;
     return paddle;
 }
 
-inline struct sprite getBall() {
-    struct sprite ball;
+inline sprite Constants_getBall() {
+    sprite ball;
     ball.width = BALL_WIDTH;
     ball.height = BALL_WIDTH;
     ball.x = BALL_INITIAL_X;
@@ -72,12 +73,12 @@ inline struct sprite getBall() {
     return ball;
 }
 
-inline std::vector<struct sprite*> getBlocks() {
+inline std::vector<sprite*> Constants_getBlocks() {
     SDL_Color colors[ROWS] = { RED, ORANGE, BROWN, YELLOW, GREEN, BLUE };
-    std::vector<struct sprite*> blocks;
+    std::vector<sprite*> blocks;
     for (int row = ROWS-1; row >= 0; --row) {
         for (int column = 0; column < COLUMNS; ++column) {
-            struct sprite *block = (struct sprite*) malloc(sizeof(struct sprite));
+            sprite *block = (sprite*) malloc(sizeof(sprite));
             block->x = column * BLOCK_WIDTH;
             block->y = TOP_PADDING + row * BLOCK_HEIGHT;
             block->width = BLOCK_WIDTH;
@@ -90,9 +91,7 @@ inline std::vector<struct sprite*> getBlocks() {
     return blocks;
 }
 
-#include <stdio.h>
-
-inline float getBallVelocity(struct sprite *ball, struct sprite *block, int level) {
+inline float Constants_getBallVelocity(sprite *ball, sprite *block, int level) {
     int row = ((ROWS * BLOCK_HEIGHT - (block->y - TOP_PADDING)) / BLOCK_HEIGHT);
     float rowMultiplier;
     switch (row) {

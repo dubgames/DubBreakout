@@ -1,110 +1,167 @@
 #include "Input.h"
 
-bool isLeftPressed = false, isRightPressed = false, isUpPressed = false, isDownPressed = false, isSpacePressed = false, isQuitPressed = false;
+#include <math.h>
+#include <vector>
+#include "IncludeSDL.h"
 
-bool isCheatInfiniteLives = false; // dgdqd
-bool isCheatDestroyAllBlocks = false; // dgkfb
+bool Input_releaseBall = false, Input_quit = false;
+float Input_paddleHorizontal[4];
+int Input_numPlayers = 1;
 
-int cheatIndex = 0;
+bool Input_hasInfiniteLives = false; // dgdqd
+bool Input_isSkippingLevel = false; // dgkfb
 
-bool incrementCheat(int index) {
-    if (cheatIndex == index) {
-        cheatIndex++;
-        return true;
-    } else {
-        cheatIndex = 0;
-        return false;
-    }
+std::vector<SDL_GameController*> controllers;
+
+const int JOYSTICK_SDL_MAX = 32767;
+const int JOYSTICK_SDL_MIN = 32768;
+const int JOYSTICK_DEADZONE = 6000;
+const int JOYSTICK_MAXXEDZONE = 4000;
+const int JOY_UNUSED = JOYSTICK_DEADZONE + JOYSTICK_MAXXEDZONE;
+const float JOYSTICK_MAX = JOYSTICK_SDL_MAX - JOY_UNUSED;
+const float JOYSTICK_MIN = JOYSTICK_SDL_MIN - JOY_UNUSED;
+
+int cheat_index = 0;
+
+bool cheat_increment(int index) {
+	if (cheat_index == index) {
+		cheat_index++;
+		return true;
+	} else {
+		cheat_index = 0;
+		return false;
+	}
 }
 
-void handle_input() {
-    SDL_Event e;
-    while (SDL_PollEvent( &e ) != 0) {
-        switch (e.type) {
-            case SDL_QUIT:
-                isQuitPressed = true;
-                break;
-            case SDL_KEYDOWN:
-                switch (e.key.keysym.sym) {
-                    case SDLK_UP:
-                        isUpPressed = true;
-                        break;                        
-                    case SDLK_DOWN:
-                        isDownPressed = true;
-                        break;
-                    case SDLK_LEFT:
-                        isLeftPressed = true;
-                        break;
-                    case SDLK_RIGHT:
-                        isRightPressed = true;
-                        break;
-                    case SDLK_SPACE:
-                        isSpacePressed = true;
-                        break;
-                    case SDLK_ESCAPE:
-                        isQuitPressed = true;
-                        break;
-                }
-                break;
-            case SDL_KEYUP:
-                // paddle
-                switch (e.key.keysym.sym) {
-                    case SDLK_UP:
-                        isUpPressed = false;
-                        break;
-                    case SDLK_DOWN:
-                        isDownPressed = false;
-                        break;
-                    case SDLK_LEFT:
-                        isLeftPressed = false;
-                        break;
-                    case SDLK_RIGHT:
-                        isRightPressed = false;
-                        break;
-                    case SDLK_SPACE:
-                        isSpacePressed = false;
-                        break;
-                }
-                
-                // cheats
-                switch (e.key.keysym.sym) {
-                    case SDLK_d:
-                        switch (cheatIndex) {
-                            case 0:
-                            case 2:
-                                cheatIndex++;
-                                break;
-                            case 4:
-                                isCheatInfiniteLives = true;
-                                cheatIndex = 0;
-                                break;
-                            default:
-                                cheatIndex = 0;
-                                break;
-                        }
-                        break;
-                    case SDLK_g:
-                        incrementCheat(1);
-                        break;
-                    case SDLK_q:
-                        incrementCheat(3);
-                        break;
-                    case SDLK_k:
-                        incrementCheat(2);
-                        break;
-                    case SDLK_f:
-                        incrementCheat(3);
-                        break;
-                    case SDLK_b:
-                        if (incrementCheat(4)) {
-                            isCheatDestroyAllBlocks = true;
-                            cheatIndex = 0;
-                        }
-                        break;
-                    default:
-                        cheatIndex = 0;
-                        break;
-                }
-        }
-    }
+void controllers_remove() {
+	for (int i = 0; i < controllers.size(); ++i) {
+		if (!SDL_GameControllerGetAttached(controllers[i])) {
+			SDL_GameControllerClose(controllers[i]);
+			controllers.erase(controllers.begin() + i);			
+		}
+	}
+}
+
+void controllers_add() {
+	for (int i = (int) controllers.size(); i < SDL_NumJoysticks(); ++i) {
+		if (SDL_IsGameController(i)) {
+			controllers.push_back(SDL_GameControllerOpen(i));				
+		}            
+	}
+}
+
+void controllers_addAndRemove() {
+	int controllers_attached = SDL_NumJoysticks();
+	if (controllers_attached > controllers.size()) {
+		controllers_add();
+	} else if (controllers_attached < controllers.size()) {
+		controllers_remove();
+	}
+	Input_numPlayers = controllers.size() > 1 ? (int) controllers.size() : 1;
+}
+
+void checkPlayInput() {
+	Input_paddleHorizontal[0] = 0;
+	Input_releaseBall = false;
+	
+	controllers_addAndRemove();
+
+	// controllers
+	for (int i = 0; i < controllers.size(); ++i) {
+		const Uint8 button = SDL_GameControllerGetButton(controllers[i], SDL_GameControllerGetButtonFromString("a"));
+		if (button) {
+			Input_releaseBall = true;
+		}
+
+		const Sint16 xaxis = SDL_GameControllerGetAxis(controllers[i], SDL_GameControllerGetAxisFromString("leftx"));
+		if (abs(xaxis) > JOYSTICK_DEADZONE) {
+			if (xaxis > 0) {
+				Input_paddleHorizontal[i] += (xaxis - JOYSTICK_DEADZONE) / JOYSTICK_MAX;
+				if (Input_paddleHorizontal[i] > 1.f) {
+					Input_paddleHorizontal[i] = 1.f;
+				}
+			} else {
+				Input_paddleHorizontal[i] += (xaxis + JOYSTICK_DEADZONE) / JOYSTICK_MIN;
+				if (Input_paddleHorizontal[i] < -1.f) {
+					Input_paddleHorizontal[i] = -1.f;
+				}
+			}
+		} else {			
+			Input_paddleHorizontal[i] = 0;
+		}
+	}
+
+	// keyboard
+	const Uint8 *state = SDL_GetKeyboardState(NULL);
+
+	if (state[SDL_SCANCODE_RIGHT]) {
+		Input_paddleHorizontal[0] = 1.;
+	} else if (state[SDL_SCANCODE_LEFT]) {
+		Input_paddleHorizontal[0] = -1.;
+	}
+
+	if (state[SDL_SCANCODE_SPACE]) {
+		Input_releaseBall = true;
+	}
+
+	if (state[SDL_SCANCODE_ESCAPE]) {
+		Input_quit = true;
+	}
+}
+
+void checkQuitAndCheats() {
+	SDL_Event e;
+	while (SDL_PollEvent(&e) != 0) {
+		switch (e.type) {
+		case SDL_QUIT:
+			Input_quit = true;
+			break;
+
+		case SDL_KEYUP:               
+			// cheats
+			switch (e.key.keysym.sym) {
+			case SDLK_d:
+				switch (cheat_index) {
+				case 0:
+				case 2:
+					cheat_index++;
+					break;
+				case 4:
+					Input_hasInfiniteLives = true;
+					cheat_index = 0;
+					break;
+				default:
+					cheat_index = 0;
+					break;
+				}
+				break;
+			case SDLK_g:
+				cheat_increment(1);
+				break;
+			case SDLK_q:
+				cheat_increment(3);
+				break;
+			case SDLK_k:
+				cheat_increment(2);
+				break;
+			case SDLK_f:
+				cheat_increment(3);
+				break;
+			case SDLK_b:
+				if (cheat_increment(4)) {
+					Input_isSkippingLevel = true;
+					cheat_index = 0;
+				}
+				break;
+			default:
+				cheat_index = 0;
+				break;
+			}
+		}
+	}
+}
+
+void Input_handle() {
+	checkPlayInput();
+	checkQuitAndCheats();
 }

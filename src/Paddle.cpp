@@ -1,26 +1,23 @@
 #include "Paddle.h"
 
-bool paddle_canGoLeft(struct sprite *paddle) {
-    return paddle->x >= -paddle->width / 2;
-}
+const int MIN_PADDLE_X = -PADDLE_WIDTH / 2;
+const int MAX_PADDLE_X = SCREEN_WIDTH - PADDLE_WIDTH / 2;
 
-bool paddle_canGoRight(struct sprite *paddle) {
-    return paddle->x <= SCREEN_WIDTH - paddle->width / 2;
-}
-
-void updatePaddle(struct sprite *paddle, float time_passed, bool isLeftPressed, bool isRightPressed) {
-   
-    // Velocity
-    if (isLeftPressed && !isRightPressed && paddle_canGoLeft(paddle)) {
-        paddle->velocityX  = -PADDLE_VELOCITY;
-    } else if (!isLeftPressed && isRightPressed && paddle_canGoRight(paddle)) {
-        paddle->velocityX  = PADDLE_VELOCITY;
-    } else {
-        paddle->velocityX  = 0;
-    }
+void Paddle_update(sprite *paddle, float timeDifferenceSeconds, float pressure) {
+    
+    // Horizontal velocity
+    paddle->velocityX = pressure * PADDLE_VELOCITY;
     
     // Position
-    paddle->x += paddle->velocityX * time_passed;
-    paddle->y += paddle->velocityY * time_passed;
+    paddle->x += paddle->velocityX * timeDifferenceSeconds;
+    paddle->y += paddle->velocityY * timeDifferenceSeconds;
+    
+    // Constrain X to screen
+    if (paddle->x < MIN_PADDLE_X) {
+        paddle->x = MIN_PADDLE_X;
+    } else if (paddle->x > MAX_PADDLE_X) {
+        paddle->x = MAX_PADDLE_X;
+    }
+
 }
 

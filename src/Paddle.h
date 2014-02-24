@@ -4,6 +4,6 @@
 #include "Sprite.h"
 #include "Constants.h"
 
-void updatePaddle(struct sprite *paddle, float time_passed, bool isLeftPressed, bool isRightPressed);
+void Paddle_update(sprite *paddle, float timeDifferenceSeconds, float pressure);
     
 #endif

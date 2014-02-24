@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Dub Block Breaker.xcodeproj">
+      location = "self:DubBreakout.xcodeproj">
    </FileRef>
 </Workspace>

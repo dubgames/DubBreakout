@@ -1,10 +1,12 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "SDL2/SDL.h"
+#include "IncludeSDL.h"
 
-extern bool isLeftPressed, isRightPressed, isUpPressed, isDownPressed, isSpacePressed, isQuitPressed;
-extern bool isCheatInfiniteLives, isCheatDestroyAllBlocks;
-void handle_input();
+extern int Input_numPlayers;
+extern bool Input_releaseBall, Input_quit;
+extern bool Input_hasInfiniteLives, Input_isSkippingLevel;
+extern float Input_paddleHorizontal[4];
+void Input_handle();
 
 #endif

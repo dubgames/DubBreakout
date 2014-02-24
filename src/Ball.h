@@ -5,11 +5,11 @@
 #include "Sprite.h"
 #include <vector>
 
-bool hasCollidedWithTopLeftRight(struct sprite *ball);
-bool hasFallenOffBottom(struct sprite *ball);
-bool hasCollidedWithPaddle(struct sprite *ball, struct sprite *paddle);
-bool hasCollidedWithBlock(struct sprite *ball, std::vector<struct sprite*> *blocks, int level);
+bool Ball_hasHitWall(sprite *ball);
+bool Ball_hasFallenOffBottom(sprite *ball);
+bool Ball_hasHitPaddle(sprite *ball, sprite *paddle);
+bool Ball_hasHitBlock(sprite *ball, std::vector<sprite*> *blocks, int level);
 
-void updateBall(struct sprite *ball, float time_passed);
+void Ball_update(sprite *ball, float timeDifferenceSeconds);
 
 #endif
