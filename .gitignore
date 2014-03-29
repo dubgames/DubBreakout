@@ -1,3 +1,5 @@
+.name
+workspace.xml
 CMakeCache.txt
 CMakeFiles
 Makefile
