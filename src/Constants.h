@@ -27,13 +27,13 @@ const int INITIAL_LIVES = 5;
 const float VELOCITYX_MULTIPLIER = 10;
 const float VELOCITYX_PADDLE_RANGE = 20;
 
-const SDL_Color BLUE = { 0x42, 0x49, 0xC8 };
-const SDL_Color GREEN = { 0x48, 0xA0, 0x48 };
-const SDL_Color YELLOW = { 0xA2, 0xA2, 0x2A };
-const SDL_Color BROWN = { 0xB4, 0x7A, 0x30 };
-const SDL_Color ORANGE = { 0xC6, 0x6C, 0x3A };
-const SDL_Color RED = { 0xC8, 0x48, 0x48 };
-const SDL_Color GRAY = { 0x8E, 0x8E, 0x8E };
+const SDL_Color BLUE = {0x42, 0x49, 0xC8};
+const SDL_Color GREEN = {0x48, 0xA0, 0x48};
+const SDL_Color YELLOW = {0xA2, 0xA2, 0x2A};
+const SDL_Color BROWN = {0xB4, 0x7A, 0x30};
+const SDL_Color ORANGE = {0xC6, 0x6C, 0x3A};
+const SDL_Color RED = {0xC8, 0x48, 0x48};
+const SDL_Color GRAY = {0x8E, 0x8E, 0x8E};
 
 
 inline sprite Constants_getTopBar() {
@@ -47,8 +47,8 @@ inline sprite Constants_getTopBar() {
     return topbar;
 }
 
-inline sprite* Constants_getPaddle(SDL_Color color) {
-    sprite *paddle = (sprite*)malloc(sizeof(sprite));
+inline sprite *Constants_getPaddle(SDL_Color color) {
+    sprite *paddle = (sprite *) malloc(sizeof(sprite));
     paddle->width = PADDLE_WIDTH;
     paddle->height = PADDLE_HEIGHT;
     paddle->x = SCREEN_WIDTH / 2;
@@ -73,12 +73,12 @@ inline sprite Constants_getBall() {
     return ball;
 }
 
-inline std::vector<sprite*> Constants_getBlocks() {
-    SDL_Color colors[ROWS] = { RED, ORANGE, BROWN, YELLOW, GREEN, BLUE };
-    std::vector<sprite*> blocks;
-    for (int row = ROWS-1; row >= 0; --row) {
+inline std::vector<sprite *> Constants_getBlocks() {
+    SDL_Color colors[ROWS] = {RED, ORANGE, BROWN, YELLOW, GREEN, BLUE};
+    std::vector<sprite *> blocks;
+    for (int row = ROWS - 1; row >= 0; --row) {
         for (int column = 0; column < COLUMNS; ++column) {
-            sprite *block = (sprite*) malloc(sizeof(sprite));
+            sprite *block = (sprite *) malloc(sizeof(sprite));
             block->x = column * BLOCK_WIDTH;
             block->y = TOP_PADDING + row * BLOCK_HEIGHT;
             block->width = BLOCK_WIDTH;
@@ -97,6 +97,7 @@ inline float Constants_getBallVelocity(sprite *ball, sprite *block, int level) {
     switch (row) {
         case 6:
             rowMultiplier = 1.55;
+            break;
         case 5:
             rowMultiplier = 1.45;
             break;

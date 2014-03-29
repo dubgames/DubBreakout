@@ -1,10 +1,9 @@
 #include "System.h"
 #include "ScoreBar.h"
 #include "Game.h"
-#include <stdio.h>
 
 const int FRAMES_PER_SECOND = 60;
-const int TIME_PER_FRAME = 1000 / FRAMES_PER_SECOND;
+const Uint32 TIME_PER_FRAME = 1000 / FRAMES_PER_SECOND;
 
 SDL_Window *window;
 SDL_Renderer *renderer;

@@ -29,10 +29,7 @@ bool Ball_hasHitWall(sprite *ball) {
 }
 
 bool Ball_hasFallenOffBottom(sprite *ball) {
-    if (ball->velocityY > 0 && ball->y + ball->height >= SCREEN_HEIGHT) {
-        return true;
-    }
-    return false;
+    return ball->velocityY > 0 && ball->y + ball->height >= SCREEN_HEIGHT;
 }
 
 bool Ball_hasHitPaddle(sprite *ball, sprite *paddle) {    
