@@ -36,22 +36,22 @@ void freeMemory() {
 void ScoreBar_render(SDL_Renderer *renderer, bool update, int score, int lives, int level) {
     if (update) {
         sprintf(scoreBuffer, "%03d %d %2d", score, lives, level);
-        
+
         freeMemory();
         scoreSurface = TTF_RenderText_Solid(font, scoreBuffer, GRAY);
         scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
-        
+
         scoreSrcRect.x = 0;
         scoreSrcRect.y = 0;
         scoreSrcRect.w = scoreSurface->w;
         scoreSrcRect.h = scoreSurface->h;
-        
+
         scoreDstRect.x = 600;
         scoreDstRect.y = 5;
         scoreDstRect.w = scoreSurface->w;
         scoreDstRect.h = scoreSurface->h;
     }
-    
+
     SDL_RenderCopy(renderer, scoreTexture, &scoreSrcRect, &scoreDstRect);
 }
 

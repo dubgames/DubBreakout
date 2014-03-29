@@ -4,11 +4,11 @@ int Game_score = 0, Game_lives = INITIAL_LIVES, Game_level = 1, Game_targetScore
 bool Game_scoreUpdated = true;
 bool Game_isOver = false, isDead = true;
 
-void Game_update(std::vector<sprite*> *blocks, sprite *ball, sprite *paddles[], Uint32 timeDifferenceMillis) {
-    
+void Game_update(std::vector<sprite *> *blocks, sprite *ball, sprite *paddles[], Uint32 timeDifferenceMillis) {
+
     if (Input_isSkippingLevel) {
-		for (int i = 0; i < blocks->size(); ++i) {
-			sprite *block = (*blocks)[i];        
+        for (int i = 0; i < blocks->size(); ++i) {
+            sprite *block = (*blocks)[i];
             if (block->isVisible) {
                 block->isVisible = false;
                 ++Game_score;
@@ -17,7 +17,7 @@ void Game_update(std::vector<sprite*> *blocks, sprite *ball, sprite *paddles[], 
         }
         Game_scoreUpdated = true;
     }
-    
+
     if (Input_releaseBall && !Game_isOver && isDead) {
         isDead = false;
         ball->velocityX = BALL_INITIAL_VELOCITYX;
@@ -29,7 +29,7 @@ void Game_update(std::vector<sprite*> *blocks, sprite *ball, sprite *paddles[], 
         Game_lives = INITIAL_LIVES;
         Game_isOver = false;
     }
-    
+
     float timeDifferenceSeconds = timeDifferenceMillis / 1000.;
 
     for (int i = 0; i == 0 || i < Input_numPlayers; i++) {
@@ -37,23 +37,23 @@ void Game_update(std::vector<sprite*> *blocks, sprite *ball, sprite *paddles[], 
     }
 
     Ball_update(ball, timeDifferenceSeconds);
-    
+
     if (Ball_hasHitWall(ball)) {
         Sound_playSideHit();
     }
-    
+
     for (int i = 0; i == 0 || i < Input_numPlayers; i++) {
         if (Ball_hasHitPaddle(ball, paddles[i])) {
             Sound_playPaddleHit();
         }
     }
-    
+
     if (Ball_hasHitBlock(ball, blocks, Game_level)) {
         ++Game_score;
         Game_scoreUpdated = true;
         Sound_playBlockHit();
     }
-    
+
     if (Game_score != 0 && Game_score == Game_targetScore) {
         ++Game_level;
         isDead = true;
@@ -62,7 +62,7 @@ void Game_update(std::vector<sprite*> *blocks, sprite *ball, sprite *paddles[], 
         *ball = Constants_getBall();
         Input_isSkippingLevel = false;
     }
-    
+
     if (Ball_hasFallenOffBottom(ball)) {
         isDead = true;
         ball->x = BALL_INITIAL_X;

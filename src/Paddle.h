@@ -5,5 +5,5 @@
 #include "Constants.h"
 
 void Paddle_update(sprite *paddle, float timeDifferenceSeconds, float pressure);
-    
+
 #endif

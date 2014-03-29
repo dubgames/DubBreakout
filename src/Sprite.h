@@ -5,8 +5,8 @@
 
 typedef struct sprite {
     float x, y, velocityX, velocityY, width, height;
-	bool isVisible;
-    SDL_Rect rect;        
+    bool isVisible;
+    SDL_Rect rect;
     SDL_Color color;
 } sprite;
 

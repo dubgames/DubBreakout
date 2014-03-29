@@ -10,6 +10,6 @@
 extern int Game_score, Game_lives, Game_level, Game_targetScore;
 extern bool Game_scoreUpdated, Game_isOver;
 
-void Game_update(std::vector<sprite*> *blocks, sprite *ball, sprite *paddles[], Uint32 timeDifferenceMillis);
-    
+void Game_update(std::vector<sprite *> *blocks, sprite *ball, sprite *paddles[], Uint32 timeDifferenceMillis);
+
 #endif

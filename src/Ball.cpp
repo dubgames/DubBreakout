@@ -5,7 +5,7 @@ bool blockHitsAllowed = true;
 bool isContained(float x, float y, sprite *sprite) {
     x -= sprite->x;
     y -= sprite->y;
-    return x >= 0 && x <=sprite->width && y >= 0 && y <= sprite->height;
+    return x >= 0 && x <= sprite->width && y >= 0 && y <= sprite->height;
 }
 
 bool Ball_hasHitWall(sprite *ball) {
@@ -14,7 +14,7 @@ bool Ball_hasHitWall(sprite *ball) {
         blockHitsAllowed = true;
         return true;
     }
-    
+
     if (ball->velocityX < 0 && ball->x <= 0) {
         ball->velocityX = -ball->velocityX;
         return true;
@@ -24,7 +24,7 @@ bool Ball_hasHitWall(sprite *ball) {
         ball->velocityX = -ball->velocityX;
         return true;
     }
-    
+
     return false;
 }
 
@@ -32,14 +32,14 @@ bool Ball_hasFallenOffBottom(sprite *ball) {
     return ball->velocityY > 0 && ball->y + ball->height >= SCREEN_HEIGHT;
 }
 
-bool Ball_hasHitPaddle(sprite *ball, sprite *paddle) {    
+bool Ball_hasHitPaddle(sprite *ball, sprite *paddle) {
     if (ball->velocityY > 0) {
         if (isContained(ball->x, ball->y, paddle)
-            || isContained(ball->x + ball->width, ball->y, paddle)
-            || isContained(ball->x + ball->width, ball->y + ball->height, paddle)
-            || isContained(ball->x, ball->y + ball->height, paddle)) {
+                || isContained(ball->x + ball->width, ball->y, paddle)
+                || isContained(ball->x + ball->width, ball->y + ball->height, paddle)
+                || isContained(ball->x, ball->y + ball->height, paddle)) {
             ball->velocityY = -ball->velocityY;
-            float x = ball->x - (paddle->x + PADDLE_WIDTH/2);
+            float x = ball->x - (paddle->x + PADDLE_WIDTH / 2);
             if (x <= 0 && x > -VELOCITYX_PADDLE_RANGE) x = -VELOCITYX_PADDLE_RANGE;
             if (x > 0 && x < VELOCITYX_PADDLE_RANGE) x = VELOCITYX_PADDLE_RANGE;
             ball->velocityX = VELOCITYX_MULTIPLIER * x;
@@ -50,21 +50,21 @@ bool Ball_hasHitPaddle(sprite *ball, sprite *paddle) {
     return false;
 }
 
-bool Ball_hasHitBlock(sprite *ball, std::vector<sprite*> *blocks, int level) {    
+bool Ball_hasHitBlock(sprite *ball, std::vector<sprite *> *blocks, int level) {
     if (blockHitsAllowed) {
-		for (int i = 0; i < blocks->size(); ++i) {
-			sprite *block = (*blocks)[i];
+        for (int i = 0; i < blocks->size(); ++i) {
+            sprite *block = (*blocks)[i];
             if (block->isVisible) {
                 if (isContained(ball->x, ball->y, block)
-                    || isContained(ball->x + ball->width, ball->y, block)
-                    || isContained(ball->x + ball->width, ball->y + ball->height, block)
-                    || isContained(ball->x, ball->y + ball->height, block)) {
-                    
+                        || isContained(ball->x + ball->width, ball->y, block)
+                        || isContained(ball->x + ball->width, ball->y + ball->height, block)
+                        || isContained(ball->x, ball->y + ball->height, block)) {
+
                     block->isVisible = false;
                     ball->velocityY = Constants_getBallVelocity(ball, block, level);
                     blockHitsAllowed = false;
                     return true;
-                }                
+                }
             }
         }
     }
