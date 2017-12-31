@@ -5,7 +5,6 @@ cc_library(
      ],
      exclude = [
          "external/libvorbis-1.3.5/lib/psytune.c",
-#         "external/libvorbis-1.3.5/lib/sharedbook.c",
          "external/libvorbis-1.3.5/lib/tone.c",
          "external/libvorbis-1.3.5/lib/barkmel.c",
      ]),
@@ -29,7 +28,7 @@ cc_library(
 genrule(
   name='endian_h',
   outs=['include/endian.h'],
-  cmd='echo "#include <sys/types.h>" > $(OUTS) && echo "GENNED"'
+  cmd='echo "#include <sys/types.h>" > $(OUTS)'
 )
 
 cc_library(
@@ -38,7 +37,7 @@ cc_library(
          "external/libvorbisidec-1.2.1/*.c",
      ],
      exclude = [         
-#         "external/libvorbisidec-1.2.1/codebook.c",
+         "external/libvorbisidec-1.2.1/codebook.c",
          "external/libvorbisidec-1.2.1/iseeking_example.c",
          "external/libvorbisidec-1.2.1/ivorbisfile_example.c",
      ]),
@@ -51,7 +50,7 @@ cc_library(
      exclude = [
 #         "external/libvorbisidec-1.2.1/block.h",
      ],)
-     +         ["include/endian.h"]
+     + ["include/endian.h"]
       ,
      defines = [
          "_USE_MATH_DEFINES" # MSVC M_PI
@@ -60,8 +59,6 @@ cc_library(
          "libogg-1.3.2",
     ],
     copts = [
-#        "-isystem /usr/include",
-#        "-isystem /usr/include/machine",
     ],
  )
 
@@ -85,16 +82,41 @@ cc_library(
 
 cc_library(
     name = "sdl_mixer",
-    srcs = glob([
-        "*.c",
-        "native_midi/*.c",
-    ]),
     includes = [
-        "./",
-        "native_midi/*.h",
+        ".",
     ],
+    srcs = glob([
+        "music_ogg.c",
+        "load_aiff.c",
+        "load_voc.c",
+        "mixer.c",
+        "effects_internal.c",
+        "effect_position.c",
+        "music_cmd.c",
+        "music.c",
+        "music_wav.c",
+    ]),
     hdrs = glob([
-        "**/*.h",
+        "SDL_mixer.h",
+        "music_ogg.h",
+        "music.h",
+        "music_wav.h",
+        "music_cmd.h",
+        "mixer.h",
+        "load_voc.h",
+        "load_aiff.h",
+        "effects_internal.h",
+
+        "music_mikmod.h",
+        "music_modplug.h",
+        "music_nativemidi.h",
+        "music_fluidsynth.h",
+        "music_timidity.h",
+        "music_mpg123.h",
+        "music_mad.h",
+        "music_smpeg.h",
+        "music_flac.h",
+        "native_midi/native_midi.h",
     ]),
     deps = [
        "@sdl2//:sdl2_headers",

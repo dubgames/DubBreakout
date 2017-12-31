@@ -14,6 +14,14 @@ cc_library(
     hdrs = glob([
       "external/zlib-1.2.11/zlib.h",
       "external/zlib-1.2.11/zconf.h",
+      "external/zlib-1.2.11/zutil.h",
+      "external/zlib-1.2.11/inftrees.h",
+      "external/zlib-1.2.11/inflate.h",
+      "external/zlib-1.2.11/deflate.h",
+      "external/zlib-1.2.11/crc32.h",
+      "external/zlib-1.2.11/inffast.h",
+      "external/zlib-1.2.11/trees.h",
+      "external/zlib-1.2.11/inffixed.h",
     ]),
     includes = [
       "external/zlib-1.2.11",        
