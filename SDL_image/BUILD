@@ -7,6 +7,12 @@ cc_library(
         "external/jpeg-9b/jmemdos.c",
         "external/jpeg-9b/jmemmac.c",
         "external/jpeg-9b/jmem-android.c",
+        "external/jpeg-9b/wrjpgcom.c",
+        "external/jpeg-9b/rdjpgcom.c",
+        "external/jpeg-9b/jpegtran.c",
+        "external/jpeg-9b/djpeg.c",
+        "external/jpeg-9b/ckconfig.c",
+        "external/jpeg-9b/cjpeg.c",
     ]),
     includes = [
         "external/jpeg-9b",
@@ -15,7 +21,6 @@ cc_library(
         "external/jpeg-9b/*.h",
     ]),
     defines = [
-#      "USE_MAC_MEMMGR",
     ],
 )
 
@@ -26,6 +31,7 @@ cc_library(
     ],
     exclude = [
         "external/libpng-1.6.32/example.c",
+        "external/libpng-1.6.32/pngtest.c",
     ]),
     includes = [
         "external/libpng-1.6.32",
@@ -33,20 +39,14 @@ cc_library(
     hdrs = glob([
         "external/libpng-1.6.32/*.h",
     ]),
+    deps = [
+      "@com_github_madler_zlib//:z",
+    ],
     defines = [
     ],
 )
-
-#cc_library(
-#    name = "image_base",
-#    textual_hdrs = glob([
-#        "*.h",
-#        "*.c",
-#    ]),
-#)
-
 cc_library(
-    name = "mac_sdl_image",
+    name = "sdl_image",
     srcs = glob([
         "IMG_bmp.c",
         "IMG_gif.c",
@@ -68,16 +68,10 @@ cc_library(
     ], exclude = [
     ]),
     includes = [
-#        ".",
     ],
     textual_hdrs = [
         "SDL_image.h"
     ],
-#    hdrs = glob([
-#        "SDL_image.h",
-#    ], exclude= [
-##      "SDL_image.h",
-#    ],),
   deps = [
     "@sdl2//:sdl2_headers",
     'jpeg-9b',

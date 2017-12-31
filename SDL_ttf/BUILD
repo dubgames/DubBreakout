@@ -1,14 +1,5 @@
-
-#objc_framework(
-#    name = "freetype_framework",
-#    framework_imports = glob([
-#        "Xcode/Frameworks/FreeType.framework/**"
-#    ]),
-##    is_dynamic = 1,
-#)
-
-objc_library(
-    name = "mac_sdl_ttf",
+cc_library(
+    name = "sdl_ttf",
     srcs = glob([
         "*.c",
     ]),
@@ -20,8 +11,7 @@ objc_library(
     ]),
     deps = [
        "@freetype//:freetype",
-       "@sdl2//:mac_sdl2",
-#       "freetype_framework",
+       "@sdl2//:sdl2_headers",
     ],
     copts = [
     ],

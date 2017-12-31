@@ -1,3 +1,9 @@
+genrule(
+  name='unistd_h',
+  outs=['include/unistd.h'],
+  cmd='echo "#ifdef _WIN32\n#include <io.h>\n#else\n#include <unistd.h>\n#endif\n" > $(OUTS)'
+)
+
 cc_library(
     name = "z",
     srcs = [
@@ -25,6 +31,7 @@ cc_library(
         "zconf.h",
         "zlib.h",
         "zutil.h",
+        "include/unistd.h",
     ],
     includes = [
         "include",
