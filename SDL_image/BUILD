@@ -1,4 +1,30 @@
 cc_library(
+    name = "zlib-1.2.11",
+    srcs = glob([
+      "external/zlib-1.2.11/uncompr.c",      
+      "external/zlib-1.2.11/inflate.c",      
+      "external/zlib-1.2.11/deflate.c",      
+      "external/zlib-1.2.11/crc32.c",      
+      "external/zlib-1.2.11/adler32.c",      
+      "external/zlib-1.2.11/zutil.c",      
+      "external/zlib-1.2.11/inftrees.c",      
+      "external/zlib-1.2.11/inffast.c",      
+      "external/zlib-1.2.11/trees.c",      
+    ]),
+    hdrs = glob([
+      "external/zlib-1.2.11/zlib.h",
+      "external/zlib-1.2.11/zconf.h",
+    ]),
+    includes = [
+      "external/zlib-1.2.11",        
+    ],
+    defines = [
+        "Z_SOLO"
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
     name = 'jpeg-9b',
     srcs = glob([
         "external/jpeg-9b/*.c",
@@ -40,7 +66,7 @@ cc_library(
         "external/libpng-1.6.32/*.h",
     ]),
     deps = [
-      "@com_github_madler_zlib//:z",
+      "zlib-1.2.11",
     ],
     defines = [
     ],

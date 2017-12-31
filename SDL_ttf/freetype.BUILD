@@ -9,7 +9,6 @@ genrule(
   cmd='echo "#include <freetype/config/ftconfig.h>" > $(OUTS)'
 )
 
-
 MODULES = [
   'autofit',
   'bdf',
@@ -41,21 +40,8 @@ FTMODULES = [
 cc_library(
     name = "freetype",
     srcs = glob(
-     #['builds/unix/ftsystem.c',] +
      ['src/%s/%s.c' % (m,m) for m in MODULES] +
      ['src/%s/ft%s.c' % (m,m) for m in FTMODULES] +
-     #['src/gzip/*.c'] +
-     #[
-     #   'src/gzip/inflate.c',
-     #   'src/gzip/zutil.h',
-     #   'src/gzip/zconf.h',
-     #   'src/gzip/infblock.h',
-     #   'src/gzip/infblock.c',
-     #   'src/gzip/inftrees.h',
-     #   'src/gzip/inftrees.c',
-     #   'src/gzip/infutil.h',
-     #   'src/gzip/infutil.c',
-     #] +
      ['src/cid/type1cid.c',
       'src/winfonts/winfnt.c',
       'src/base/ftinit.c',
@@ -85,12 +71,10 @@ cc_library(
         'HAVE_UNISTD_H',
         'FT_CONFIG_OPTION_USE_ZLIB',
         'FT_CONFIG_OPTION_SYSTEM_ZLIB',
-        #'NO_INFLATE_MASK',
-        #'__MVS__',
     ],
     deps = [
         "freetype_base",
-        "@com_github_madler_zlib//:z",
+        "@sdl_image//:zlib-1.2.11",
     ],
     copts = [
     ],
